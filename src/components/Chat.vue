@@ -26,6 +26,7 @@
 <script>
 import NewMessage from '@/components/NewMessage'
 import db from '@/firebase/init'
+import moment from 'moment'
 export default {
   name: "Chat",
   props: ['name'],
@@ -38,7 +39,7 @@ export default {
     }
   },
   created() {
-    let ref = db.collection('user_messages')
+    let ref = db.collection('user_messages').orderBy('timestamp')
 
     ref.onSnapshot(snapshot => {
       console.log(snapshot)
